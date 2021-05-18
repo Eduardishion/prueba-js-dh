@@ -37,7 +37,13 @@ leerTareas.leerTareas();
 
 // }
 
-agregarTarea(tarea);
+let tarea = {
+      titulo: "hacer examen...",
+      status: "terminada",
+};
+
+agregarTarea.agregarTarea(tarea);
+
 
 
 // exports.filtrarTareasPorEstado = function (estado) {
@@ -53,4 +59,5 @@ agregarTarea(tarea);
 
 // }
 
-filtrarTareasPorEstado(estado);
+filtrarTareasPorEstado.filtrarTareasPorEstado('terminada');
+
