@@ -7,72 +7,65 @@
          )
 */
 
-const leerTareas = require('./leerTareas');
-const agregarTarea = require('./agregarTarea');
-const filtrarTareasPorEstado = require('./filtrarTareasPorEstado');
 
-// exports.leerTareas = function () {
-//     /*
-//         En esta función debes leer y retornar las tareas registradas.
-//     */
+const fs = require('fs');
 
-//    let listaTareas = fs.readFileSync('./tareas.json','utf-8');
 
-//    return listaTareas;
+exports.leerTareas = function () {
+    /*
+        En esta función debes leer y retornar las tareas registradas.
+    */
+   
+   //apertura de de archivo  
+   let listaTareasEnArchivoJson = fs.readFileSync('./tareas.json','utf-8');
 
-// }
+   //conversion de cadena json a arraglo
+   let arregloTareas = JSON.parse(listaTareasEnArchivoJson);
 
-leerTareas.leerTareas();
+   //retornando vector
+   return arregloTareas;
+   
+}
 
-// exports.agregarTarea = function (tarea) {
-//     /*
-//         Registra y guarda una nueva tarea.
-//     */
-//     let tareasTmp = leerTareas(); 
+
+exports.agregarTarea = function (tarea) {
+    /*
+        Registra y guarda una nueva tarea.  
+    */
     
-//     let tareasDeArchivo = JSON.parse(tareasTmp);
+    //apertura de de archivo  
+   let listaTareasEnArchivoJson = fs.readFileSync('./tareas.json','utf-8');
+    
+    //conversion de cadena json a arraglo
+   let arregloTareas = JSON.parse(listaTareasEnArchivoJson);
 
-//     tareasDeArchivo.push(tarea);
+    //agregado de nueva tarea
+   arregloTareas.push(tarea);
 
-//     JSON.stringify(tareasDeArchivo);
+    //convercion de arregloTareas a cadena json 
+    let cadenaJson = JSON.stringify(arregloTareas);
 
-// }
+    //escritura de archivo json con cadenaJson
+    fs.writeFileSync('./tareas.json', cadenaJson);
 
+}
 
-let tarea = {
-      titulo: "hacer examen...",
-      status: "terminada",
-};
-
-let tarea2 = {
-  titulo: "sin terminar examen ...",
-  status: "pendiente",
-};
-
-
-let tarea3 = {
-  titulo: "terminar curso...",
-  status: "pendiente",
-};
-
-agregarTarea.agregarTarea(tarea);
-agregarTarea.agregarTarea(tarea2);
-agregarTarea.agregarTarea(tarea3);
+exports.filtrarTareasPorEstado = function (estado) {
+    /*
+        En esta función debes de leer las tareas y retornar las que tengan el estado que se
+        manda en el parametro.
+    */
+   
+   //apertura de de archivo  
+   let listaTareasEnArchivoJson = fs.readFileSync('./tareas.json','utf-8');
+   //conversion de cadena json a arraglo
+   let arregloTareas = JSON.parse(listaTareasEnArchivoJson);
+   //filtrado de datos
+   let objetosFiltrados = arregloTareas.filter(tarea=> tarea.status == estado )
 
 
+   return objetosFiltrados;
 
-// exports.filtrarTareasPorEstado = function (estado) {
-//     /*
-//         En esta función debes de leer las tareas y retornar las que tengan el estado que se
-//         manda en el parametro.
-//     */
-//    let tareasTmp = leerTareas(); 
+}
 
-//    let tareasNuevas = tareasTmp.find( function (tarea) {
-//         return tarea.estado == estado;
-//    });
-
-// }
-
-filtrarTareasPorEstado.filtrarTareasPorEstado("pendiente");
 
