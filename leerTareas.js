@@ -6,7 +6,6 @@ exports.leerTareas = function () {
     */
 
    let listaTareas = fs.readFileSync('./tareas.json','utf-8');
-
    return listaTareas;
 
 }

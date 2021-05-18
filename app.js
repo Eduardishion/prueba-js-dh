@@ -23,6 +23,7 @@ const filtrarTareasPorEstado = require('./filtrarTareasPorEstado');
 // }
 
 leerTareas.leerTareas();
+
 // exports.agregarTarea = function (tarea) {
 //     /*
 //         Registra y guarda una nueva tarea.
@@ -37,12 +38,26 @@ leerTareas.leerTareas();
 
 // }
 
+
 let tarea = {
       titulo: "hacer examen...",
       status: "terminada",
 };
 
+let tarea2 = {
+  titulo: "sin terminar examen ...",
+  status: "pendiente",
+};
+
+
+let tarea3 = {
+  titulo: "terminar curso...",
+  status: "pendiente",
+};
+
 agregarTarea.agregarTarea(tarea);
+agregarTarea.agregarTarea(tarea2);
+agregarTarea.agregarTarea(tarea3);
 
 
 
@@ -59,5 +74,5 @@ agregarTarea.agregarTarea(tarea);
 
 // }
 
-filtrarTareasPorEstado.filtrarTareasPorEstado('terminada');
+filtrarTareasPorEstado.filtrarTareasPorEstado("pendiente");
 
